@@ -1,0 +1,5 @@
+export enum MutationTypes {
+  SET_ACCOUNTS = 'SET_ACCOUNTS',
+  PICK_ACCOUNT = 'PICK_ACCOUNT',
+  SET_CATEGORIES = 'SET_CATEGORIES',
+}
