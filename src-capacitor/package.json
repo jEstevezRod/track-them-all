@@ -1,0 +1,12 @@
+{
+  "name": "track-them-all",
+  "version": "0.0.1",
+  "description": "A Quasar Framework app",
+  "author": "Jesús Estévez <jesestrod1@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "^2.5.0",
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0"
+  }
+}

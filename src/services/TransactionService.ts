@@ -4,8 +4,8 @@ import {date} from 'quasar';
 
 class TransactionService {
 
-  getAll(account_id: string): Promise<any> {
-    return api.get('/transactions', {params: {account_id}});
+  getAll(account: Account): Promise<any> {
+    return api.get('/transactions', {params: {account_id: account.id}});
   }
 
   get(id: string): Promise<any> {
@@ -26,8 +26,8 @@ class TransactionService {
 
   createFromAggregates(amount: number, account: Account, category: Category): Transaction {
     const transaction: Transaction = {
-      'amount': amount,
-      'issued_at': date.formatDate(Date.now(), 'DD-MM-YYYY HH:mm:ss'),
+      'amount': round(amount),
+      'issued_at': date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
       'account_id': account.id,
       'category_id': category.id
     }
@@ -37,3 +37,8 @@ class TransactionService {
 }
 
 export default new TransactionService();
+
+function round(num : number): number {
+	// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+	return +(Math.round(Number(num + 'e+2'))  + 'e-2');
+}

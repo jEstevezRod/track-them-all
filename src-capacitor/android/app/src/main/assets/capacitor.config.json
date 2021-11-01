@@ -1,0 +1,7 @@
+{
+  "appId": "com.jestevezrod.tracker",
+  "appName": "Track them all",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

@@ -25,3 +25,10 @@ export interface Transaction {
   account_id: number,
   name?: string
 }
+
+export enum TransactionStatus {
+	INACTIVE,
+	BEING_PROCESSED,
+	PROCESS_CORRECTLY,
+	PROCESS_FAILED
+}
