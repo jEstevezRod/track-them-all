@@ -10,11 +10,11 @@
         v-model="tabSelected"
         indicator-color="transparent"
         active-color="white"
-        class="bg-teal text-grey-5 shadow-2"
+        class="blue-8 text-grey-5 shadow-2"
       >
         <q-route-tab name="home" icon="home" to="/" />
-        <q-route-tab name="account" icon="account_balance" to="/account"/>
         <q-route-tab name="history" icon="view_list" to="/transactions"/>
+        <q-route-tab name="account" icon="account_balance" to="/account"/>
         <q-route-tab name="report" icon="analytics" to="/report"/>
       </q-tabs>
     </q-footer>

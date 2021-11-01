@@ -4,9 +4,9 @@ import {GeneralStateInterface} from './state';
 import AccountService from 'src/services/AccountService';
 import {MutationTypes} from 'src/store/general/mutation-types';
 import {ActionTypes} from 'src/store/general/action-types';
-// import TransactionService from 'src/services/TransactionService';
 import CategoryService from 'src/services/CategoryService';
-import {Account} from "components/models";
+import {Account, Transaction} from 'components/models';
+import TransactionService from 'src/services/TransactionService';
 
 const actions: ActionTree<GeneralStateInterface, StateInterface> = {
 
@@ -40,25 +40,38 @@ const actions: ActionTree<GeneralStateInterface, StateInterface> = {
 
   [ActionTypes.PICK_ACCOUNT]({commit}, account: Account) {
     return new Promise((resolve => {
-      console.log('action', account)
       commit(MutationTypes.PICK_ACCOUNT, account)
+      resolve(true)
+    }))
+  },
+
+  [ActionTypes.STORE_TRANSACTION]({}, transaction: Transaction) {
+    return new Promise(((resolve, reject) => {
+      TransactionService.store(transaction)
+        .then(response => {
+          console.log(response.data)
+          resolve(true)
+        })
+        .catch(error => {
+          reject(error)
+        })
+
+    }))
+  },
+
+  [ActionTypes.GET_ALL_TRANSACTIONS]({commit}, accountId: string) {
+    return new Promise((resolve => {
+      TransactionService.getAll(accountId)
+        .then(response => {
+          console.log('transactions',response.data)
+          commit(MutationTypes.SET_TRANSACTIONS, response.data as Transaction[])
+          resolve(true)
+        })
+        .catch(error => {
+          console.error(error)
+        })
     }))
   }
-
-  // [ActionTypes.STORE_TRANSACTION]({commit}, payload) {
-  //
-  //   return new Promise(((resolve, reject) => {
-  //
-  //     TransactionService.store(payload)
-  //       .then(response => {
-  //         resolve(response)
-  //       })
-  //       .catch(error => {
-  //         reject(error)
-  //       })
-  //
-  //   }))
-  // }
 
 };
 
